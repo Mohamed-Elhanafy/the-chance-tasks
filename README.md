@@ -12,5 +12,5 @@ Validates whether a Sudoku puzzle follows the standard rules:
 - **O(n²)** where n is the width of the board
 - Uses hash sets for constant-time lookups
 ### flowchart
-![screenshot](res/_Sudoku_checker_light_drawio.png)
+![screenshot](res/_Sudoku_checker_light.png)
 ---
