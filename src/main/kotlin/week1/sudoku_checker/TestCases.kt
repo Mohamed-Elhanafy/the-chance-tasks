@@ -1,32 +1,47 @@
 package week1.sudoku_checker
-/** ##### Test cases for `isSudokuValid()`
- * ###### valid test cases
- * - Valid complete valid Sudoku
- * - Valid incomplete valid Sudoku
- * ##### invalid testcases
- * - Duplicate in row
- * - Duplicate in column
- * - Duplicate in subgrid
- * - Empty Sudoku
- * - Invalid value (not 1-9 or '-')
- * - Invalid grid (Grid size is not a perfect square)
- * **/
+
+import week1.common.check
 
 fun main() {
-    check(actual = isSudokuValid(), expected = true, name = "when given complete valid sudoku returns true")
-    check(actual = isSudokuValid(), expected = true, name = "when given incomplete valid sudoku returns true")
-    check(actual = isSudokuValid(), expected = false, name = "when given sudoku with duplicate in row returns false")
-    check(actual = isSudokuValid(), expected = false, name = "when given sudoku with duplicate in column returns false")
-    check(actual = isSudokuValid(), expected = false, name = "when given empty sudoku returns false")
-    check(actual = isSudokuValid(), expected = false, name = "when given sudoku with invalid value returns false")
-    check(actual = isSudokuValid(), expected = false, name = "when given sudoku with invalid grid returns false")
+    check(
+        actual = isSudokuValid(completeValidSudoku),
+        expected = true,
+        name = "given complete valid sudoku then returns true"
+    )
+    check(
+        actual = isSudokuValid(incompleteValidSudoku),
+        expected = true,
+        name = "given incomplete valid sudoku then returns true"
+    )
+    check(
+        actual = isSudokuValid(validNumber16x16Sudoku),
+        expected = true,
+        name = "given sudoku when number exceeds grid size then returns true"
+    )
+    check(actual = isSudokuValid(emptySudoku), expected = true, name = "when given empty sudoku returns true")
+    check(
+        actual = isSudokuValid(duplicateInRowSudoku),
+        expected = false,
+        name = "given sudoku when duplicate in row then returns true"
+    )
+    check(
+        actual = isSudokuValid(duplicateInColumnSudoku),
+        expected = false,
+        name = "given sudoku when duplicate in column then returns false"
+    )
+    check(
+        actual = isSudokuValid(invalidCharValueSudoku),
+        expected = false,
+        name = "given sudoku when invalid value then returns false"
+    )
+    check(
+        actual = isSudokuValid(invalidGridSizeSudoku),
+        expected = false,
+        name = "given sudoku when invalid grid size then returns false"
+    )
+    check(
+        actual = isSudokuValid(invalidSubgridSizeSudoku),
+        expected = false,
+        name = "given invalid sudoku subgrid size then returns false"
+    )
 }
-
-fun check(actual: Boolean, expected: Boolean, name: String) {
-    if (actual == expected) {
-        println("✓ - $name")
-    } else {
-        System.err.println("✗ - $name. Expected $expected, but got $actual")
-    }
-}
-
