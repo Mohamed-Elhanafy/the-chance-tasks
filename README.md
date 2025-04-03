@@ -1,4 +1,4 @@
-udoku Validator
+## Sudoku Validator
 
 Validates whether a Sudoku puzzle follows the standard rules:
 
