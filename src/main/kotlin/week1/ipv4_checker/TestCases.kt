@@ -1,62 +1,28 @@
 package week1.ipv4_checker
 
-/** ##### Test cases for `isValidIPv4()`
- * ###### Valid test cases
- * - Valid standard IP (192.168.1.1)
- * - Valid zero IP (0.0.0.0)
- * - Valid maximum value IP (255.255.255.255)
- * - Valid localhost (127.0.0.1)
- * - Valid private network IP (10.0.0.1)
- *
- * ##### Invalid test cases
- * - Empty string
- * - Too few segments (192.168.1)
- * - Too many segments (192.168.1.1.1)
- * - Leading zero (192.168.01.1)
- * - Empty segment (192.168.1.)
- * - Empty segment at beginning (.192.168.1)
- * - Empty middle segment (192..168.1)
- * - Segment value too high (192.168.256.1)
- * - Negative segment value (192.168.-1.1)
- * - Non-numeric character (192.168.a.1)
- * - Trailing dot (192.168.1.1.)
- * - Invalid separator (192.168.1+1)
- * - Wrong separator type (192,168,1,1)
- * - Trailing space (192.168.1.1 )
- * - Leading space ( 192.168.1.1)
- */
+import week1.common.check
 
 fun main() {
-    // Valid IPv4 addresses
-    check(isValidIPv4("192.168.1.1"), true, "Valid standard IP")
-    check(isValidIPv4("0.0.0.0"), true, "Valid zero IP")
-    check(isValidIPv4("255.255.255.255"), true, "Valid max value IP")
-    check(isValidIPv4("127.0.0.1"), true, "Valid localhost")
-    check(isValidIPv4("10.0.0.1"), true, "Valid private network IP")
+    check(actual = isValidIPv4("192.168.1.1"), expected = true, name = "given standard IP then returns true")
+    check(actual = isValidIPv4("0.0.0.0"), expected = true, name = "given zero IP then returns true")
+    check(actual = isValidIPv4("255.255.255.255"), expected = true, name = "given max value IP then returns true")
+    check(actual = isValidIPv4("127.0.0.1"), expected = true, name = "given localhost then returns true")
+    check(actual = isValidIPv4("10.0.0.1"), expected = true, name = "given private network IP then returns true")
 
-    // Invalid IPv4 addresses
-    check(isValidIPv4(""), false, "Empty string")
-    check(isValidIPv4("192.168.1"), false, "Too few segments")
-    check(isValidIPv4("192.168.1.1.1"), false, "Too many segments")
-    check(isValidIPv4("192.168.01.1"), false, "Leading zero")
-    check(isValidIPv4("192.168.1.01"), false, "Leading zero in last segment")
-    check(isValidIPv4("192.168.1."), false, "Empty segment")
-    check(isValidIPv4(".192.168.1"), false, "Empty first segment")
-    check(isValidIPv4("192..168.1"), false, "Empty middle segment")
-    check(isValidIPv4("192.168.256.1"), false, "Segment value too high")
-    check(isValidIPv4("192.168.-1.1"), false, "Negative segment value")
-    check(isValidIPv4("192.168.a.1"), false, "Non-numeric character")
-    check(isValidIPv4("192.168.1.1."), false, "Trailing dot")
-    check(isValidIPv4("192.168.1+1"), false, "Invalid separator")
-    check(isValidIPv4("192,168,1,1"), false, "Commas instead of dots")
-    check(isValidIPv4("192.168.1.1 "), false, "Trailing space")
-    check(isValidIPv4(" 192.168.1.1"), false, "Leading space")
-}
-
-fun check(actual: Boolean, expected: Boolean, name: String) {
-    if (actual == expected) {
-        println("✓ - $name")
-    } else {
-        System.err.println("✗ - $name. Expected $expected, but got $actual")
-    }
+    check(actual = isValidIPv4(""), expected = false, name = "given empty string then returns false")
+    check(actual = isValidIPv4("192.168.1"), expected = false, name = "given too few segments then returns false")
+    check(actual = isValidIPv4("192.168.1.1.1"), expected = false, name = "given too many segments then returns false")
+    check(actual = isValidIPv4("192.168.01.1"), expected = false, name = "given leading zero then returns false")
+    check(actual = isValidIPv4("192.168.1.01"), expected = false, name = "given leading zero in last segment then returns false")
+    check(actual = isValidIPv4("192.168.1."), expected = false, name = "given empty segment then returns false")
+    check(actual = isValidIPv4(".192.168.1"), expected = false, name = "given empty first segment then returns false")
+    check(actual = isValidIPv4("192..168.1"), expected = false, name = "given empty middle segment then returns false")
+    check(actual = isValidIPv4("192.168.256.1"), expected = false, name = "given segment value too high then returns false")
+    check(actual = isValidIPv4("192.168.-1.1"), expected = false, name = "given negative segment value then returns false")
+    check(actual = isValidIPv4("192.168.a.1"), expected = false, name = "given non-numeric character then returns false")
+    check(actual = isValidIPv4("192.168.1.1."), expected = false, name = "given trailing dot then returns false")
+    check(actual = isValidIPv4("192.168.1+1"), expected = false, name = "given invalid separator then returns false")
+    check(actual = isValidIPv4("192,168,1,1"), expected = false, name = "given commas instead of dots then returns false")
+    check(actual = isValidIPv4("192.168.1.1 "), expected = false, name = "given trailing space then returns false")
+    check(actual = isValidIPv4(" 192.168.1.1"), expected = false, name = "given leading space then returns false")
 }
